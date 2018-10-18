@@ -24,14 +24,35 @@ class TaskController extends Controller
         $task=Task::find($id);
         $task->iscompleted=1;
         $task->save();
-         $data=Task::all();
-        return view('tasks')->with('tasks',$data);
+        return redirect()->back();
+       //  $data=Task::all();
+        //return view('tasks')->with('tasks',$data);
     }
     public function updateTaskAsNotCompleted($id){
         $task=Task::find($id);
         $task->iscompleted=0;
         $task->save();
-         $data=Task::all();
-        return view('tasks')->with('tasks',$data);
+        return redirect()->back();
+        // $data=Task::all();
+        //return view('tasks')->with('tasks',$data);
+    }
+    public function deleteTask($id){ 
+        $task=Task::find($id);
+        $task->delete();
+       // $data=Task::all();
+        return redirect()->back();
+    }
+    public function updateTaskview($id){
+        $task=Task::find($id);
+
+        return view('updatetask')->with('taskdata',$task);
+    }public function updatetask(Request $request){
+       $id=$request->id;
+       $task=$request->task;
+       $data=Task::find($id);
+       $data->task=$task;
+       $data->save();
+       $data=Task::all();
+       return view('tasks')->with('tasks',$data);
     }
 }

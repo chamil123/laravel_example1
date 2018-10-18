@@ -22,3 +22,6 @@ return view('tasks')->with('tasks',$data);
 Route::post('/saveTask','TaskController@store');
 Route::get('/markascompleted/{id}','TaskController@updateTaskAsCompleted');
 Route::get('/markasnotcompleted/{id}','TaskController@updateTaskAsNotCompleted');
+Route::get('/deleteTask/{id}','TaskController@deleteTask');
+Route::get('/updatetask/{id}','TaskController@updateTaskview');
+Route::post('/updatetasks','TaskController@updatetask');
